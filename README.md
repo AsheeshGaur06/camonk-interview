@@ -1,158 +1,129 @@
-# CA Monk - Blog Application Assignment
+# CA Monk – Blog Dashboard (Frontend Assignment)
 
-Welcome to the CA Monk Blog Application assignment! This project tests your ability to build a modern React application with state management, styling, and component libraries.
+This project is a **React-based Blog Dashboard** built as part of the CA Monk Frontend Developer Intern assignment.
+The application demonstrates clean UI structuring, state management, and intuitive user interaction.
 
-## Installation
+---
 
-### Prerequisites
-- Node.js (v18 or higher)
-- Git
-- React.js knowledge
-- Familiarity with TanStack Query, Tailwind CSS, and shadcn/ui.
+## ✨ Features Overview
 
-### Setup Instructions
+### 🧱 Two-Panel Layout
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd camonk-interview
-   ```
+The UI is divided into **two main sections**:
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+#### **Left Panel**
 
-3. **Install required libraries for the assignment** , ie, TanStack Query, Tailwind CSS, and  shadcn/ui
-4. **Start the JSON Server (Backend API)**
-   ```bash
-   npm run server
-   ```
-   The API will run on `http://localhost:3001`
+* Displays a **Create New Blog** form at the top
+* Shows a **list of blog cards** below the form
+* Each blog card contains:
 
-5. **Start the Development Server (in a new terminal)**
-   ```bash
-   npm run dev
-   ```
-   The app will run on `http://localhost:5173`
+  * Categories
+  * Blog title
+  * Short description
+  * Published date
 
-## Assignment Tasks
+#### **Right Panel**
 
-You are required to build a blog application with the following features:
+* Displays the **full content of the selected blog**
+* Includes:
 
-### Required Technologies
-- ✅ **TanStack Query** - For server state management and data fetching
-  - 📚 [Documentation](https://tanstack.com/query/latest)
-- ✅ **Tailwind CSS** - For styling
-  - 📚 [Documentation](https://tailwindcss.com/docs)
-- ✅ **shadcn/ui** - For UI components
-  - 📚 [Documentation](https://ui.shadcn.com/)
+  * Blog cover image
+  * Blog title
+  * Categories
+  * Published date
+  * Blog description
+  * Complete blog content
 
-## UI Reference
+---
 
-Here's a reference design for the blog application layout:
+## 📝 Creating a New Blog
 
-![Blog Reference](image.png)
+* Users can create a new blog using the **Create New Blog** form located at the **top of the left panel**
+* Required fields:
 
-**Left Panel:** Blog list view showing blog cards with category, title, and description  
-**Right Panel:** Blog detail view displaying cover image, full content
+  * Title
+  * Short description
+  * Categories (comma-separated)
+  * Cover image URL
+  * Blog content
+* On successful submission:
 
-UI IMAGE - ![UI-refernece](ui.jpeg)
+  * A new blog card appears instantly in the **left panel**
+  * The blog can then be selected and read like any other blog
 
-> **Note:** This is just a reference design. Your implementation does not have to look exactly like this. 
+---
 
-For the blog content, use plain text — no need to use HTML-formatted text.
+## 📖 Reading Blogs
 
-### Tasks to Complete
+* The **left panel** always shows the list of available blogs
+* When a user **clicks on any blog card**:
 
-#### 1. **Get All Blogs**
-- Create a component to display all blogs using `GET /blogs`
-- Use TanStack Query for data fetching
-- Handle loading and error states
+  * That blog becomes active
+  * Its complete content is displayed in the **right panel**
+* At any given time:
 
-#### 2. **Get Blog by ID**
-- Implement single blog view using `GET /blogs/:id`
-- Use TanStack Query for data fetching
+  * **Only one blog is displayed** in the right panel
+  * Users can switch between blogs by clicking different cards on the left
 
-#### 3. **Create a New Blog**
-- Build a form to create a new blog using `POST /blogs`
-- Invalidate queries after successful creation
+---
 
-> Organize your components in a suitable file structure within the `src/` directory.
+## 🔁 Interaction Flow
 
-### API Endpoints
+1. User opens the application
+2. Blog list is visible on the left
+3. User clicks a blog card
+4. Selected blog content appears on the right
+5. User can:
 
-The JSON Server provides the following endpoints:
+   * Read the blog
+   * Click another blog card to switch content
+   * Create a new blog using the form and immediately view it
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/blogs` | Get all blogs |
-| GET | `/blogs/:id` | Get a specific blog by ID |
-| POST | `/blogs` | Create a new blog |
+---
 
-### Evaluation Criteria
+## ▶️ Running the Project (Important)
 
-Your submission will be evaluated on:
-- ✅ Correct implementation of TanStack Query hooks
-- ✅ Proper use of Tailwind CSS for styling
-- ✅ Integration of shadcn/ui components
-- ✅ Code organization and structure
-- ✅ Error handling and loading states
-- ✅ Responsive design []
-- ✅ User experience and UI polish
+This project requires **two terminals running in parallel**:
 
+### **Terminal 1 – Start the Mock Backend Server**
 
-
-## Sample Blog Object
-
-```json
-{
-  "id": 1,
-  "title": "Future of Fintech",
-  "category": ["FINANCE", "TECH"],
-  "description": "Exploring how AI and blockchain are reshaping financial services",
-  "date": "2026-01-11T09:12:45.120Z",
-  "coverImage": "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg",
-  "content": "Full blog content..."
-}
+```bash
+npm run server
 ```
 
-description: A short summary of the blog  
-content: The full content of the blog
+* Runs the backend / mock API (e.g., JSON Server)
+* Required for fetching and storing blog data
 
-## Tips
+### **Terminal 2 – Start the Frontend Application**
 
-- Set up TanStack Query's `QueryClientProvider` in your app root
-- Configure Tailwind CSS properly in your config files
-- Use shadcn components like `Card`, `Button`, `Input`, etc.
-- Handle loading states with skeletons
-- Implement proper error boundaries
-- Consider using React Router for navigation (optional)
+```bash
+npm run dev
+```
 
-## Submission
+* Starts the React development server
+* Opens the UI in the browser
 
-Once you've completed the assignment:
-1. Ensure all tasks are working correctly
-2. Commit your changes with clear commit messages
-3. Push to your repository
-4. Share the repository link for review in the google form provided
+⚠️ **Both terminals must be running simultaneously** for the application to work correctly.
 
-## FAQ
+---
 
-**Do I need to deploy the code?**  
-No. Simply clone the repository, commit and push your changes, and share the repository link via the Google Form.
+## 🛠️ Tech Stack
 
-**Is it mandatory to use TypeScript and TanStack Query?**  
-Yes, using both TypeScript and TanStack Query is compulsory for this assignment.
+* **React + TypeScript**
+* **TanStack React Query** for data fetching and caching
+* **Tailwind CSS** for styling
+* **shadcn/ui** components
+* **Lucide Icons**
 
-**Is using JSON Server mandatory, or can I create my own server?**  
-Using JSON Server is mandatory. Please use the provided JSON Server setup rather than creating your own backend.
+---
 
-**What should I use for styling?**  
-Use **Tailwind CSS** and **shadcn/ui** for styling. You are expected to install, configure, and use both Tailwind CSS and shadcn/ui components in your implementation.
+## 🎯 Purpose
 
-**Have more questions?**  
-If you have any additional doubts, feel free to reach out at: `developer@camonk.com`.
+This assignment demonstrates:
+
+* Component-driven UI architecture
+* Clean state handling between list and detail views
+* Real-world blog reading experience with intuitive UX
+* Ability to scale UI for content-heavy applications
 
 
-Good luck! 🚀
