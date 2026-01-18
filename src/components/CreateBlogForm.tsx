@@ -16,10 +16,13 @@ export default function CreateBlogForm() {
     content: "",
   });
 
+  const [successMessage, setSuccessMessage] = useState("");
+
   const mutation = useMutation({
     mutationFn: createBlog,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["blogs"] });
+
       setForm({
         title: "",
         description: "",
@@ -27,6 +30,12 @@ export default function CreateBlogForm() {
         coverImage: "",
         content: "",
       });
+
+      setSuccessMessage("Blog published successfully ✅");
+
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 3000);
     },
   });
 
@@ -35,7 +44,10 @@ export default function CreateBlogForm() {
 
     mutation.mutate({
       ...form,
-      category: form.category.split(","),
+      category: form.category
+        .split(",")
+        .map((c) => c.trim())
+        .filter(Boolean),
       date: new Date().toISOString(),
     });
   };
@@ -46,22 +58,32 @@ export default function CreateBlogForm() {
         <h2 className="text-lg font-semibold">Create New Blog</h2>
 
         <form onSubmit={handleSubmit} className="space-y-3">
-          <Input placeholder="Title" required
+          <Input
+            placeholder="Title"
+            required
             value={form.title}
             onChange={(e) => setForm({ ...form, title: e.target.value })}
           />
 
-          <Input placeholder="Short Description" required
+          <Input
+            placeholder="Short Description"
+            required
             value={form.description}
-            onChange={(e) => setForm({ ...form, description: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, description: e.target.value })
+            }
           />
 
-          <Input placeholder="Categories (comma separated)" required
+          <Input
+            placeholder="Categories (comma separated)"
+            required
             value={form.category}
             onChange={(e) => setForm({ ...form, category: e.target.value })}
           />
 
-          <Input placeholder="Cover Image URL" required
+          <Input
+            placeholder="Cover Image URL"
+            required
             value={form.coverImage}
             onChange={(e) => setForm({ ...form, coverImage: e.target.value })}
           />
@@ -78,6 +100,10 @@ export default function CreateBlogForm() {
             <p className="text-sm text-red-500">
               Failed to publish blog. Try again.
             </p>
+          )}
+
+          {successMessage && (
+            <p className="text-sm text-green-600">{successMessage}</p>
           )}
 
           <Button type="submit" disabled={mutation.isPending}>
