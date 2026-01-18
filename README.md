@@ -5,7 +5,11 @@ The application demonstrates clean UI structuring, state management, and intuiti
 
 ---
 
+![alt text](camonk-interview.png)
+
 ## ✨ Features Overview
+
+
 
 ### 🧱 Two-Panel Layout
 
