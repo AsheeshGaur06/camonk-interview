@@ -5,7 +5,7 @@ The application demonstrates clean UI structuring, state management, and intuiti
 
 ---
 
-![alt text](camonk-interview.png)
+![alt text]("C:\Users\asheesh gaur\Downloads\camonk-interview.png")
 
 ## ✨ Features Overview
 
